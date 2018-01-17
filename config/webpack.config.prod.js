@@ -79,6 +79,17 @@ module.exports = {
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
   },
+  externals: {
+    "react": "React",
+    "react-dom":"ReactDOM",
+    "echarts": "echarts",
+    "_":"_",
+    "axios":"axios",
+    "redux":"Redux",
+    "react-redux":"ReactRedux",
+    "react-router-dom":"ReactRouterDOM",
+    "thunk":"ReduxThunk"
+  },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
     // We placed these paths second because we want `node_modules` to "win"

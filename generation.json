@@ -1,11 +1,12 @@
 {
-    "name":"org",
+    "name":"user",
     "columns": [
-        {"key":"id","title":"orgID","isId":true,"editable":false},
-        {"key":"orgname"}
+        {"key":"id","title":"用户的id","isId":true,"editable":false},
+        {"key":"username"},
+        {"key":"orgid"}
     ],
     "url":{
-        "baseUrl":"http://localhost:3456/org",
+        "baseUrl":"http://localhost:3456/user",
         "id":"id",
         "get":{
             "method":"get",

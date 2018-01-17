@@ -1,14 +1,9 @@
 {
   "user": [
     {
-      "username": "ghfv",
+      "username": "ghfv34",
       "orgid": "2",
       "id": 6
-    },
-    {
-      "username": "dsafads",
-      "orgid": "23",
-      "id": 7
     },
     {
       "username": "234",
@@ -44,6 +39,11 @@
       "username": "f",
       "orgid": "分",
       "id": 14
+    },
+    {
+      "username": "sdaf",
+      "orgid": "asdf",
+      "id": 15
     }
   ],
   "org": [
@@ -52,7 +52,7 @@
       "orgname": "bjtu"
     },
     {
-      "orgname": "bupt",
+      "orgname": "bupt33",
       "id": 2
     }
   ]
