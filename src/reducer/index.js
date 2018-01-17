@@ -41,7 +41,7 @@ const httpData = (state = {}, action) => {
 };
 
 
-console.log("reducers",[httpData,...reducers])
+console.log("reducers",reducers)
 export default combineReducers({
     httpData,
 	...reducers
