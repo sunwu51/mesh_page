@@ -1,0 +1,59 @@
+{
+  "user": [
+    {
+      "username": "ghfv",
+      "orgid": "2",
+      "id": 6
+    },
+    {
+      "username": "dsafads",
+      "orgid": "23",
+      "id": 7
+    },
+    {
+      "username": "234",
+      "orgid": "24",
+      "id": 8
+    },
+    {
+      "username": "dfsa",
+      "orgid": "sdaf",
+      "id": 9
+    },
+    {
+      "username": "sdaf",
+      "orgid": "sdaf",
+      "id": 10
+    },
+    {
+      "username": "sdaf",
+      "orgid": "dsaf",
+      "id": 11
+    },
+    {
+      "username": "sadfsda",
+      "orgid": "fsdafsdaf",
+      "id": 12
+    },
+    {
+      "username": "hehe",
+      "orgid": "2",
+      "id": 13
+    },
+    {
+      "username": "f",
+      "orgid": "分",
+      "id": 14
+    }
+  ],
+  "org": [
+    {
+      "id": 1,
+      "orgname": "bjtu66"
+    },
+    {
+      "orgname": "bupt",
+      "id": 2
+    }
+  ]
+}

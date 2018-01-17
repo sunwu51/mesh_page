@@ -1,0 +1,28 @@
+{
+    "name":"user",
+    "columns": [
+        {"key":"id","title":"用户ID","isId":true,"editable":false},
+        {"key":"username"},
+        {"key":"orgid"}
+    ],
+    "url":{
+        "baseUrl":"http://localhost:3456/user",
+        "id":"id",
+        "get":{
+            "method":"get",
+            "path":"/"
+        },
+        "add":{
+            "method":"post",
+            "path":"/"
+        },
+        "delete":{
+            "method":"delete",
+            "path":"/"
+        },
+        "update":{
+            "method":"patch",
+            "path":"/" 
+        }
+    }
+}
