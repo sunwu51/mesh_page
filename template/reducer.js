@@ -13,7 +13,7 @@ export const $name$=function(state=[],action){
 export const $name$Thunk = {
     get(){
         return (dispatch)=>{
-            axios.get(baseUrl+'/$get.path$')
+            axios.request({method:'get',url:baseUrl+'/$get.path$'})
                 .then(data=>{
                     dispatch({type:'$name$/set',data:data.data})});
         }
@@ -21,7 +21,7 @@ export const $name$Thunk = {
     add(record){
         let _this=this;
         return (dispatch)=>{
-            axios.post(baseUrl+"/$add.path$",record).then(res=>{
+            axios.request({method:'get',url:baseUrl+"/$add.path$",data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -29,7 +29,7 @@ export const $name$Thunk = {
     delete(record){
         let _this=this;
         return (dispatch)=>{
-            axios.delete(baseUrl+"/$delete.path$"+record.$id$).then(res=>{
+            axios.request({method:'get',url:baseUrl+"/$delete.path$"+record.$id$}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -37,7 +37,7 @@ export const $name$Thunk = {
     update(record){
         let _this=this;
         return (dispatch)=>{
-            axios.patch(baseUrl+"/$update.path$"+record.$id$,record).then(res=>{
+            axios.request({method:'get',url:baseUrl+"/$update.path$"+record.$id$,data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }
