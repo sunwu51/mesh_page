@@ -31,8 +31,9 @@ class App extends Component {
         console.log(this.props); 
         const { auth } = this.props;
         const responsive = false;
-        if(!auth.login)
-        return <Redirect to="/login" />
+        //开发阶段去掉这段 避免每次都输密码才能登陆
+        // if(!auth.login)
+        // return <Redirect to="/login" />
         return (
             <Layout>
                 {!responsive && <SiderCustom collapsed={this.state.collapsed} />}
