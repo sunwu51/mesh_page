@@ -24,14 +24,6 @@ class Login extends React.Component {
     // }
     handleSubmit = (e) => {
         e.preventDefault();
-        // this.props.form.validateFields((err, values) => {
-        //     if (!err) {
-        //         console.log('Received values of form: ', values);
-        //         const { fetchData } = this.props;
-        //         if (values.userName === 'admin' && values.password === 'admin') fetchData({funcName: 'admin', stateName: 'auth'});
-        //         if (values.userName === 'guest' && values.password === 'guest') fetchData({funcName: 'guest', stateName: 'auth'});
-        //     }
-        // });
         this.props.form.validateFields((err, values)=>{
             if (!err) {
                 if (values.userName === 'admin' && values.password === 'admin'){
@@ -95,21 +87,7 @@ class Login extends React.Component {
     }
 }
 
-// const mapStateToPorps = state => {
-//     const { auth } = state.httpData;
-//     return { auth };
-// };
-// const mapDispatchToProps = dispatch => ({
-//     fetchData: bindActionCreators(fetchData, dispatch),
-//     receiveData: bindActionCreators(receiveData, dispatch)
-// });
-
-
-// export default connect(mapStateToPorps, mapDispatchToProps)(Form.create()(Login));
-
 export default connect(
     state=>({auth:state.auth}),
-    dispatch=>({
-        login(loginfo){dispatch(authThunk.login(loginfo))}
-    })  
+    dispatch=>({login(loginfo){dispatch(authThunk.login(loginfo))}})  
 )(Form.create()(Login));

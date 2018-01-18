@@ -104,14 +104,14 @@ var option = {
 export default function ChartDemo(){
     return (
         <div>
-        <BreadcrumbCustom first="charts" /> 
-        <Card title="charts">
-            <ReactEcharts
-                    option={option}
-                    style={{height: '300px', width: '100%'}}
-                    className={'react_for_echarts'}
-            />
-        </Card>
+            <BreadcrumbCustom first="charts" /> 
+            <Card title="charts">
+                <ReactEcharts
+                        option={option}
+                        style={{height: '300px', width: '100%'}}
+                        className={'react_for_echarts'}
+                />
+            </Card>
         </div>        
     );
 }

@@ -1,14 +1,13 @@
 import axios from 'axios'
+import ActionTypes from '../ActionTypes';
 
 
 export const auth =(state={login:false,username:"",token:"",role:""},action)=>{
     switch (action.type){
-        case "auth/login":
+        case ActionTypes.AuthLogined:
             return {...state,login:true,...action.data};
-        case "auth/logout":
+        case ActionTypes.AuthLogouted:
             return {login:false,username:"",token:"",role:""};
-        case "auth/refresh":
-            return {...state,login:true,...action.data};
         default:
             return state;
     }
@@ -21,7 +20,7 @@ export const authThunk = {
                 .then(data=>{
                     console.log(data.statusText)
                     if(data.statusText==="OK"){
-                        dispatch({type:'auth/login',data:data.data})  
+                        dispatch({type:ActionTypes.AuthLogined,data:data.data})  
                     }
                 });
         }

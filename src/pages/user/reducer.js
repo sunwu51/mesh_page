@@ -1,4 +1,4 @@
-import axios from 'axios'
+import {request} from '../../axios/request'
 
 const baseUrl="http://localhost:3456/user";
 
@@ -13,7 +13,7 @@ export const user=function(state=[],action){
 export const userThunk = {
     get(){
         return (dispatch)=>{
-            axios.request({method:'get',url:baseUrl+'/'})
+            request({method:'get',url:baseUrl+'/'})
                 .then(data=>{
                     dispatch({type:'user/set',data:data.data})});
         }
@@ -21,7 +21,7 @@ export const userThunk = {
     add(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'post',url:baseUrl+"/",data:record}).then(res=>{
+            request({method:'post',url:baseUrl+"/",data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -29,7 +29,7 @@ export const userThunk = {
     delete(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'delete',url:baseUrl+"/"+record.id}).then(res=>{
+            request({method:'delete',url:baseUrl+"/"+record.id}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -37,7 +37,7 @@ export const userThunk = {
     update(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'patch',url:baseUrl+"/"+record.id,data:record}).then(res=>{
+            request({method:'patch',url:baseUrl+"/"+record.id,data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }
