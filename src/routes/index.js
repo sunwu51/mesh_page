@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import Dashboard from '../components/dashboard/Dashboard';
+import Dashboard from '../pages/dashboard/Dashboard';
 import { menus } from '../pages/menus';
 
 /**

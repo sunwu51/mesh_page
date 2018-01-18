@@ -1,4 +1,4 @@
-import axios from 'axios'
+import {request} from '../../axios/request'
 
 const baseUrl="$baseUrl$";
 
@@ -13,7 +13,7 @@ export const $name$=function(state=[],action){
 export const $name$Thunk = {
     get(){
         return (dispatch)=>{
-            axios.request({method:'$get.method$',url:baseUrl+'/$get.path$'})
+            request({method:'$get.method$',url:baseUrl+'/$get.path$'})
                 .then(data=>{
                     dispatch({type:'$name$/set',data:data.data})});
         }
@@ -21,7 +21,7 @@ export const $name$Thunk = {
     add(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'$add.method$',url:baseUrl+"/$add.path$",data:record}).then(res=>{
+            request({method:'$add.method$',url:baseUrl+"/$add.path$",data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -29,7 +29,7 @@ export const $name$Thunk = {
     delete(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'$delete.method$',url:baseUrl+"/$delete.path$"+record.$id$}).then(res=>{
+            request({method:'$delete.method$',url:baseUrl+"/$delete.path$"+record.$id$}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -37,7 +37,7 @@ export const $name$Thunk = {
     update(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'$update.method$',url:baseUrl+"/$update.path$"+record.$id$,data:record}).then(res=>{
+            request({method:'$update.method$',url:baseUrl+"/$update.path$"+record.$id$,data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }

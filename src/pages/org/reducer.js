@@ -1,4 +1,4 @@
-import axios from 'axios'
+import {request} from '../../axios/request'
 
 const baseUrl="http://localhost:3456/org";
 
@@ -13,8 +13,9 @@ export const org=function(state=[],action){
 export const orgThunk = {
     get(){
         return (dispatch)=>{
-            axios.request({method:'get',url:baseUrl+'/'})
+            request({method:'get',url:baseUrl+'/'})
                 .then(data=>{
+                    console.log(data)
                     dispatch({type:'org/set',data:data.data})   
                 });
         }
@@ -22,7 +23,7 @@ export const orgThunk = {
     add(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'post',url:baseUrl+'/',data:record})
+            request({method:'post',url:baseUrl+'/',data:record})
             .then(res=>{
                 _this.get()(dispatch);
             })
@@ -31,7 +32,7 @@ export const orgThunk = {
     delete(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'delete',url:baseUrl+'/'+record.id})
+            request({method:'delete',url:baseUrl+'/'+record.id})
             .then(res=>{
                 _this.get()(dispatch);
             })
@@ -40,7 +41,7 @@ export const orgThunk = {
     update(record){
         let _this=this;
         return (dispatch)=>{
-            axios.request({method:'patch',url:baseUrl+'/'+record.id,data:record})
+            request({method:'patch',url:baseUrl+'/'+record.id,data:record})
             .then(res=>{
                 _this.get()(dispatch);
             })

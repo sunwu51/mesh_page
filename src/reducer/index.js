@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import {menus} from '../pages/menus'
 
 import {auth} from '../pages/auth/reducer';
+import {mqtt} from '../pages/auth/mqtt';
+import actionTypes from '../pages/actionTypes';
 
 const reducers ={};
 /* 自动扫描pages/{name}/reducer文件，添加相应的reduer */
@@ -23,6 +25,7 @@ menus.forEach(it=>{
 console.log("reducers",reducers)
 export default combineReducers({
     auth,
+    mqtt,
 	...reducers
 	/*anchor*/
 });
