@@ -2,13 +2,8 @@
   "user": [
     {
       "username": "ghfv34",
-      "orgid": "2",
+      "orgid": "23",
       "id": 6
-    },
-    {
-      "username": "234",
-      "orgid": "24",
-      "id": 8
     },
     {
       "username": "dfsa",
@@ -44,6 +39,11 @@
       "username": "sdaf",
       "orgid": "asdf",
       "id": 15
+    },
+    {
+      "username": "方法",
+      "orgid": "发",
+      "id": 16
     }
   ],
   "org": [
@@ -55,5 +55,9 @@
       "orgname": "bupt33",
       "id": 2
     }
-  ]
+  ],
+  "auth": {
+    "token": "fdsgfdsgfds",
+    "username": "frank"
+  }
 }

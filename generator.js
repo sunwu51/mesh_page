@@ -5,7 +5,7 @@ if(!fsExists(process.argv[2])){
 }
 
 var conf = JSON.parse(fs.readFileSync(process.argv[2]).toString());
-var pagePath = "./src/pages/"+conf.name+"/index.js";
+var pagePath = "./src/pages/"+conf.name+"/"+conf.name.substring(0,1).toUpperCase()+conf.name.substring(1)+".jsx";
 var reduPath = "./src/pages/"+conf.name+"/reducer.js";
 var menuPath ="./src/pages/menus.js";
 conf.url.get.path=short(conf.url.get.path);
