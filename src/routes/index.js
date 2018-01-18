@@ -4,26 +4,20 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import Dashboard from '../components/dashboard/Dashboard';
 import { menus } from '../pages/menus';
 
-// const routes = [];
-// menus.forEach(it=>{
-//     if(it.name){
-//         let Com = require('../pages/'+it.name+"/index");
-//         routes.push (
-//             <Route exact path={it.key} component={Com} />
-//         )
-//     }
-        
-// });
-// console.log(routes)
+/**
+ * 注意这个文件是 /app下的子路由，并不是全部的路由信息，全部路由在index.js
+ */
 export default class CRouter extends Component {
-    requireAuth = (permission, component) => {
-        const { auth } = this.props;
-        const { permissions } = auth.data;
-        // const { auth } = store.getState().httpData;
-        if (!permissions || !permissions.includes(permission)) return <Redirect to={'404'} />;
-        return component;
-    };
+    // requireAuth = (permission, component) => {
+    //     const { auth } = this.props;
+    //     const { permissions } = auth.data;
+    //     // const { auth } = store.getState().httpData;
+    //     if (!permissions || !permissions.includes(permission)) return <Redirect to={'404'} />;
+    //     return component;
+    // };
     render() {
+        // console.log(this.props)
+        // this.requireAuth();
         return (
             <Switch>
                 <Route exact path="/app/dashboard/index" component={Dashboard} />
@@ -31,12 +25,12 @@ export default class CRouter extends Component {
                     /* 自动扫描pages/{name}/index文件，并添加作为组件 */
                     menus.map(it=>{
                         if(it.name){
-                            let Com = require('../pages/'+it.name+"/index").default;
+                            let jsxname = it.name.substring(0,1).toUpperCase()+it.name.substring(1);
+                            let Com = require('../pages/'+it.name+"/"+jsxname).default;
                             return (
                                 <Route exact path={it.key} key={it.key} component={Com} />
                             )
                         }
-                            
                     })
                 }
                 <Route render={() => <Redirect to="/404" />} />

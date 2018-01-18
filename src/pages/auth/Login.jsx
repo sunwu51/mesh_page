@@ -4,40 +4,52 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchData, receiveData } from '@/action';
+import {authThunk} from './reducer';
+import {Redirect} from 'react-router-dom';
 
 const FormItem = Form.Item;
 
 class Login extends React.Component {
-    componentWillMount() {
-        const { receiveData } = this.props;
-        receiveData(null, 'auth');
-    }
-    componentWillReceiveProps(nextProps) {
-        const { auth: nextAuth = {} } = nextProps;
-        const { history } = this.props;
-        if (nextAuth.data && nextAuth.data.uid) {   // 判断是否登陆
-            localStorage.setItem('user', JSON.stringify(nextAuth.data));
-            history.push('/');
-        }
-    }
+    // componentWillMount() {
+    //     const { receiveData } = this.props;
+    //     receiveData(null, 'auth');
+    // }
+    // componentWillReceiveProps(nextProps) {
+    //     const { auth: nextAuth = {} } = nextProps;
+    //     const { history } = this.props;
+    //     if (nextAuth.data && nextAuth.data.uid) {   // 判断是否登陆
+    //         localStorage.setItem('user', JSON.stringify(nextAuth.data));
+    //         history.push('/');
+    //     }
+    // }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        // this.props.form.validateFields((err, values) => {
+        //     if (!err) {
+        //         console.log('Received values of form: ', values);
+        //         const { fetchData } = this.props;
+        //         if (values.userName === 'admin' && values.password === 'admin') fetchData({funcName: 'admin', stateName: 'auth'});
+        //         if (values.userName === 'guest' && values.password === 'guest') fetchData({funcName: 'guest', stateName: 'auth'});
+        //     }
+        // });
+        this.props.form.validateFields((err, values)=>{
             if (!err) {
-                console.log('Received values of form: ', values);
-                const { fetchData } = this.props;
-                if (values.userName === 'admin' && values.password === 'admin') fetchData({funcName: 'admin', stateName: 'auth'});
-                if (values.userName === 'guest' && values.password === 'guest') fetchData({funcName: 'guest', stateName: 'auth'});
+                if (values.userName === 'admin' && values.password === 'admin'){
+                   this.props.login({username:'admin',password:'admin'})
+                }
             }
-        });
+        })
+        
     };
-    gitHub = () => {
-        window.location.href = 'https://github.com/login/oauth/authorize?client_id=792cdcd244e98dcd2dee&redirect_uri=http://localhost:3006/&scope=user&state=reactAdmin';
-    };
+    
     render() {
         const { getFieldDecorator } = this.props.form;
+        const { auth } = this.props;
+        if(auth.login){
+            return (
+                <Redirect to="/app/dashboard/index" push />
+            )
+        }
         return (
             <div className="login">
                 <div className="login-form" >
@@ -72,7 +84,7 @@ class Login extends React.Component {
                             </Button>
                             <p style={{display: 'flex', justifyContent: 'space-between'}}>
                                 <a href="">或 现在就去注册!</a>
-                                <a onClick={this.gitHub} ><Icon type="github" />(第三方登录)</a>
+                                <a><Icon type="github" />(第三方登录)</a>
                             </p>
                         </FormItem>
                     </Form>
@@ -83,14 +95,21 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToPorps = state => {
-    const { auth } = state.httpData;
-    return { auth };
-};
-const mapDispatchToProps = dispatch => ({
-    fetchData: bindActionCreators(fetchData, dispatch),
-    receiveData: bindActionCreators(receiveData, dispatch)
-});
+// const mapStateToPorps = state => {
+//     const { auth } = state.httpData;
+//     return { auth };
+// };
+// const mapDispatchToProps = dispatch => ({
+//     fetchData: bindActionCreators(fetchData, dispatch),
+//     receiveData: bindActionCreators(receiveData, dispatch)
+// });
 
 
-export default connect(mapStateToPorps, mapDispatchToProps)(Form.create()(Login));
+// export default connect(mapStateToPorps, mapDispatchToProps)(Form.create()(Login));
+
+export default connect(
+    state=>({auth:state.auth}),
+    dispatch=>({
+        login(loginfo){dispatch(authThunk.login(loginfo))}
+    })  
+)(Form.create()(Login));

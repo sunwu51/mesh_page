@@ -88,7 +88,8 @@ module.exports = {
     "redux":"Redux",
     "react-redux":"ReactRedux",
     "react-router-dom":"ReactRouterDOM",
-    "thunk":"ReduxThunk"
+    "thunk":"ReduxThunk",
+    "antd":"antd",
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -187,7 +188,7 @@ module.exports = {
         loader: require.resolve('babel-loader'),
         options: {
             plugins: [
-                ['import', [{ libraryName: 'antd', libraryDirectory: 'es', style: 'css' }]],  // import less
+                //['import', [{ libraryName: 'antd', libraryDirectory: 'es', style: true }]],  // import less
             ],
           compact: true,
         },

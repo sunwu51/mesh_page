@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Menu, Icon, Layout, Badge, Popover } from 'antd';
 import screenfull from 'screenfull';
-import { gitOauthToken, gitOauthInfo } from '../axios';
+// import { gitOauthToken, gitOauthInfo } from '../axios';
 import { queryString } from '../utils';
 import avater from '../style/imgs/b1.jpg';
 import SiderCustom from './SiderCustom';
@@ -38,20 +38,20 @@ class HeaderCustom extends Component {
         //     });
         // }
         const _user = JSON.parse(localStorage.getItem('user')) || '测试';
-        if (!_user && QueryString.hasOwnProperty('code')) {
-            gitOauthToken(QueryString.code).then(res => {
-                gitOauthInfo(res.access_token).then(info => {
-                    this.setState({
-                        user: info
-                    });
-                    localStorage.setItem('user', JSON.stringify(info));
-                });
-            });
-        } else {
-            this.setState({
-                user: _user
-            });
-        }
+        // if (!_user && QueryString.hasOwnProperty('code')) {
+        //     gitOauthToken(QueryString.code).then(res => {
+        //         gitOauthInfo(res.access_token).then(info => {
+        //             this.setState({
+        //                 user: info
+        //             });
+        //             localStorage.setItem('user', JSON.stringify(info));
+        //         });
+        //     });
+        // } else {
+        //     this.setState({
+        //         user: _user
+        //     });
+        // }
     };
     screenFull = () => {
         if (screenfull.enabled) {
@@ -65,6 +65,7 @@ class HeaderCustom extends Component {
     };
     logout = () => {
         localStorage.removeItem('user');
+        this.props.logout();
         this.props.history.push('/login')
     };
     popoverHide = () => {
@@ -76,11 +77,13 @@ class HeaderCustom extends Component {
         this.setState({ visible });
     };
     render() {
-        const { responsive, path } = this.props;
+        const {  path } = this.props;
+        const responsive= false
+        console.log(this.props.user)
         return (
             <Header style={{ background: '#fff', padding: 0, height: 65 }} className="custom-theme" >
                 {
-                    responsive.data.isMobile ? (
+                    responsive ? (
                         <Popover content={<SiderCustom path={path} popoverHide={this.popoverHide} />} trigger="click" placement="bottomLeft" visible={this.state.visible} onVisibleChange={this.handleVisibleChange}>
                             <Icon type="bars" className="trigger custom-trigger" />
                         </Popover>
@@ -107,14 +110,14 @@ class HeaderCustom extends Component {
                     </Menu.Item>
                     <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
                         <MenuItemGroup title="用户中心">
-                            <Menu.Item key="setting:1">你好 - {this.props.user.userName}</Menu.Item>
-                            <Menu.Item key="setting:2">个人信息</Menu.Item>
+                            <Menu.Item key="setting:1">你好 - {this.props.user.username}</Menu.Item>
+                            {/* <Menu.Item key="setting:2">个人信息</Menu.Item> */}
                             <Menu.Item key="logout"><span onClick={this.logout}>退出登录</span></Menu.Item>
                         </MenuItemGroup>
-                        <MenuItemGroup title="设置中心">
+                        {/* <MenuItemGroup title="设置中心">
                             <Menu.Item key="setting:3">个人设置</Menu.Item>
                             <Menu.Item key="setting:4">系统设置</Menu.Item>
-                        </MenuItemGroup>
+                        </MenuItemGroup> */}
                     </SubMenu>
                 </Menu>
                 <style>{`
@@ -128,9 +131,6 @@ class HeaderCustom extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    const { responsive = {data: {}} } = state.httpData;
-    return {responsive};
-};
 
-export default withRouter(connect(mapStateToProps)(HeaderCustom));
+
+export default withRouter(connect()(HeaderCustom));

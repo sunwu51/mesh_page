@@ -5,33 +5,44 @@ import './style/lib/animate.css';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { createStore, applyMiddleware ,compose  } from 'redux';
+import { createStore, applyMiddleware ,compose } from 'redux';
 import reducer from './reducer';
 import { AppContainer } from 'react-hot-loader';
-import Page from './Page';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import NotFound from './pages/404/NotFound';
+import Login from './pages/auth/Login';
+import App from './App';
 
 // redux 注入操作
 const middleware = [thunk];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(...middleware)));
+export const store = createStore(reducer, composeEnhancers(applyMiddleware(...middleware)));
 
 // console.log(store.getState());
 
 
-const render = Component => {   // 增加react-hot-loader保持状态刷新操作，如果不需要可去掉并把下面注释的打开
+// const render = Component => {   // 增加react-hot-loader保持状态刷新操作，如果不需要可去掉并把下面注释的打开
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-                <Component store={store} />
+                <Router>
+                    <Switch>
+                        <Route exact path="/" render={() => <Redirect to="/app/dashboard/index" push />} />        
+                        <Route path="/app" component={App} />
+                        <Route path="/404" component={NotFound} />
+                        <Route path="/login" component={Login} />
+                        <Route component={NotFound} />
+                    </Switch>
+                </Router>
             </Provider>
         </AppContainer>
         ,
         document.getElementById('root')
     );
-};
+// };
 
-render(Page);
+// render(Page);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
@@ -47,18 +58,9 @@ if (module.hot) {
             orgError.apply(console, args);
         }
     };
-    module.hot.accept('./Page', () => {
-        render(Page);
-    })
+    // module.hot.accept('./Page', () => {
+    //     render(Page);
+    // })
 }
 
-// ReactDOM.render(
-//     <AppContainer>
-//         <Provider store={store}>
-//             <CRouter store={store} />
-//         </Provider>
-//     </AppContainer>
-//  ,
-//   document.getElementById('root')
-// );
 registerServiceWorker();
