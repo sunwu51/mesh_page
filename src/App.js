@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, notification, Icon } from 'antd';
-import ActionTypes from "./pages/ActionTypes";
+import ActionTypes from "./pages/actionTypes";
 import './style/index.less';
 import SiderCustom from './components/SiderCustom';
 import HeaderCustom from './components/HeaderCustom';
@@ -8,7 +8,11 @@ import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import Routes from './routes';
 import { Redirect } from 'react-router-dom';
+import {mqttThunk} from "./pages/auth/mqtt"
+
+
 const { Content, Footer } = Layout;
+
 
 class App extends Component {
     state = {
@@ -21,6 +25,7 @@ class App extends Component {
     };
     logout(){
         this.props.dispatch({type:ActionTypes.AuthLogouted});
+        this.props.dispatch(mqttThunk.disconnect(this.props.mqtt.mqttclient));
     }
     render() {
         console.log(this.props); 
@@ -59,8 +64,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    const { auth } = state;
-    return { auth };
+    const { auth,mqtt } = state;
+    return { auth,mqtt };
 };
 
 

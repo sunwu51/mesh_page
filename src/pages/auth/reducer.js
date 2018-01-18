@@ -1,12 +1,13 @@
 import axios from 'axios'
-import ActionTypes from '../ActionTypes';
+import { mqttThunk } from './mqtt';
+import actionTypes from '../actionTypes';
 
 
 export const auth =(state={login:false,username:"",token:"",role:""},action)=>{
     switch (action.type){
-        case ActionTypes.AuthLogined:
+        case actionTypes.AuthLogined:
             return {...state,login:true,...action.data};
-        case ActionTypes.AuthLogouted:
+        case actionTypes.AuthLogouted:
             return {login:false,username:"",token:"",role:""};
         default:
             return state;
@@ -18,13 +19,13 @@ export const authThunk = {
         return (dispatch)=>{
             axios.request({method:'get',url:'http://localhost:3456/auth',data:loginfo})
                 .then(data=>{
-                    console.log(data.statusText)
                     if(data.statusText==="OK"){
-                        dispatch({type:ActionTypes.AuthLogined,data:data.data})  
+                        dispatch({type:actionTypes.AuthLogined,data:data.data}); 
+                        dispatch(mqttThunk.connect({username:loginfo.username,password:loginfo.password})); 
                     }
                 });
         }
-    }
+    },
 }
 
 
