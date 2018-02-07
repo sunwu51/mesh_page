@@ -15,3 +15,6 @@ export function request(config){
         return res;
     });
 }
+export function getSelection(url){
+    return request({method:'get',url});
+}

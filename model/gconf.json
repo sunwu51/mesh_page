@@ -1,0 +1,29 @@
+{
+    "name":"gconf",
+    "columns": [
+        {"key":"gconfid","title":"网关配置id","isId":true,"editable":false},
+        {"key":"file","title":"文件路径","type":"file","uploadurl":"//localhost:8080/hw"},
+        {"key":"remark","title":"备注","required":false}
+        
+    ],
+    "url":{
+        "baseUrl":"http://localhost:8080/hw/gconf",
+        "id":"gconfid",
+        "get":{
+            "method":"get",
+            "path":"/"
+        },
+        "add":{
+            "method":"post",
+            "path":"/"
+        },
+        "delete":{
+            "method":"delete",
+            "path":"/"
+        },
+        "update":{
+            "method":"put",
+            "path":"/" 
+        }
+    }
+}

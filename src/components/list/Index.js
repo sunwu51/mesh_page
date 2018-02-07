@@ -17,6 +17,7 @@ class List extends React.Component{
     render(){
         let {columns}=this.props;
         columns=columns.map(it=>{return Object.assign({title:it.key,dataIndex:it.key,type:"string"},it)});
+        columns=columns.map(it=>{if(!it.render){it.render=(t,r)=>{if(typeof(t)=='string'&&t.length>30)return t.substr(0,31)+"...";else return t;}}return it})
         let rowKey = columns.filter(i=>i.isId)[0]?columns.filter(i=>i.isId)[0]['key']:undefined;
         let newprops={...this.props,rowKey,columns}
         if(columns.filter(it=>it.key==='_action').length<1)

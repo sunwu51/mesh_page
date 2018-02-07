@@ -1,0 +1,31 @@
+{
+    "name":"ntype",
+    "columns": [
+        {"key":"ntypeid","title":"节点id","isId":true,"editable":false},
+        {"key":"typename","title":"类型名"},        
+        {"key":"datamodel","title":"数据模型(json)"},
+        {"key":"modelstr","title":"nodered代码"},
+        {"key":"remark","title":"备注","required":false}
+        
+    ],
+    "url":{
+        "baseUrl":"http://localhost:8080/hw/ntype",
+        "id":"ntypeid",
+        "get":{
+            "method":"get",
+            "path":"/"
+        },
+        "add":{
+            "method":"post",
+            "path":"/"
+        },
+        "delete":{
+            "method":"delete",
+            "path":"/"
+        },
+        "update":{
+            "method":"put",
+            "path":"/" 
+        }
+    }
+}

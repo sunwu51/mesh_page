@@ -1,21 +1,21 @@
 import {request} from '../../axios/request'
 
-const baseUrl="http://localhost:3456/user";
+const baseUrl="http://localhost:8080/hw/gconf";
 
-export const user=function(state=[],action){
-    if(action.type==="user/set"){
+export const gconf=function(state=[],action){
+    if(action.type==="gconf/set"){
         return action.data;
     }
     else{
         return state;
     }
 }
-export const userThunk = {
+export const gconfThunk = {
     get(){
         return (dispatch)=>{
             request({method:'get',url:baseUrl+'/'})
                 .then(data=>{
-                    dispatch({type:'user/set',data:data.data})});
+                    dispatch({type:'gconf/set',data:data.data})});
         }
     },
     add(record){
@@ -29,7 +29,7 @@ export const userThunk = {
     delete(record){
         let _this=this;
         return (dispatch)=>{
-            request({method:'delete',url:baseUrl+"/"+record.id}).then(res=>{
+            request({method:'delete',url:baseUrl+"/"+record.gconfid}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -37,7 +37,7 @@ export const userThunk = {
     update(record){
         let _this=this;
         return (dispatch)=>{
-            request({method:'patch',url:baseUrl+"/"+record.id,data:record}).then(res=>{
+            request({method:'put',url:baseUrl+"/"+record.gconfid,data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }

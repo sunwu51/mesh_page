@@ -1,0 +1,32 @@
+{
+    "name":"node",
+    "columns": [
+        {"key":"nid","title":"节点id","isId":true,"editable":false},
+        {"key":"gid","title":"网关id","type":"number"},
+        {"key":"seq","title":"序列号"},
+        {"key":"online","title":"在线状态","type":"number"},
+        {"key":"ntypeid","title":"节点类型","type":"number","selection":{"url":"http://localhost:8080/hw/ntype","value":"ntypeid"}},
+        {"key":"nconfid","title":"节点配置","type":"number","selection":{"url":"http://localhost:8080/hw/nconf","value":"nconfid"}},
+        {"key":"remark","title":"备注","required":false}
+    ],
+    "url":{
+        "baseUrl":"http://localhost:8080/hw/node",
+        "id":"nid",
+        "get":{
+            "method":"get",
+            "path":"/"
+        },
+        "add":{
+            "method":"post",
+            "path":"/"
+        },
+        "delete":{
+            "method":"delete",
+            "path":"/"
+        },
+        "update":{
+            "method":"put",
+            "path":"/" 
+        }
+    }
+}

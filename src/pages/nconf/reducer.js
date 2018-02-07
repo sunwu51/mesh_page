@@ -1,30 +1,27 @@
 import {request} from '../../axios/request'
 
-const baseUrl="http://localhost:3456/org";
+const baseUrl="http://localhost:8080/hw/nconf";
 
-export const org=function(state=[],action){
-    if(action.type==="org/set"){
+export const nconf=function(state=[],action){
+    if(action.type==="nconf/set"){
         return action.data;
     }
     else{
         return state;
     }
 }
-export const orgThunk = {
+export const nconfThunk = {
     get(){
         return (dispatch)=>{
             request({method:'get',url:baseUrl+'/'})
                 .then(data=>{
-                    console.log(data)
-                    dispatch({type:'org/set',data:data.data})   
-                });
+                    dispatch({type:'nconf/set',data:data.data})});
         }
     },
     add(record){
         let _this=this;
         return (dispatch)=>{
-            request({method:'post',url:baseUrl+'/',data:record})
-            .then(res=>{
+            request({method:'post',url:baseUrl+"/",data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -32,8 +29,7 @@ export const orgThunk = {
     delete(record){
         let _this=this;
         return (dispatch)=>{
-            request({method:'delete',url:baseUrl+'/'+record.id})
-            .then(res=>{
+            request({method:'delete',url:baseUrl+"/"+record.nconfid}).then(res=>{
                 _this.get()(dispatch);
             })
         }
@@ -41,8 +37,7 @@ export const orgThunk = {
     update(record){
         let _this=this;
         return (dispatch)=>{
-            request({method:'patch',url:baseUrl+'/'+record.id,data:record})
-            .then(res=>{
+            request({method:'put',url:baseUrl+"/"+record.nconfid,data:record}).then(res=>{
                 _this.get()(dispatch);
             })
         }

@@ -1,0 +1,30 @@
+{
+    "name":"gateway",
+    "columns": [
+        {"key":"gid","title":"网关id","isId":true,"editable":false},
+        {"key":"seq","title":"序列号"},
+        {"key":"section","title":"项目"},
+        {"key":"gconfid","title":"网关配置id","type":"number"},
+        {"key":"remark","title":"备注","required":false}        
+    ],
+    "url":{
+        "baseUrl":"http://localhost:8080/hw/gateway",
+        "id":"gid",
+        "get":{
+            "method":"get",
+            "path":"/"
+        },
+        "add":{
+            "method":"post",
+            "path":"/"
+        },
+        "delete":{
+            "method":"delete",
+            "path":"/"
+        },
+        "update":{
+            "method":"put",
+            "path":"/" 
+        }
+    }
+}

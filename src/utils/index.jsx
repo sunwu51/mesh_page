@@ -19,3 +19,30 @@ export const queryString = () => {
     });
     return _queryString;
 };
+
+export const transNR=str=>{
+    try{
+        var json = JSON.parse(str)
+    }
+    catch(e){
+        alert("json格式错误")
+        return {state:0,msg:"json格式错误"};
+    }
+    var res=""
+    for(var k in json){
+        var arr = json[k].match(/^(u)?(int|float)(1|2|4|8|16|32|64)(b|l)?$/)   
+        if(arr){
+            let pre=((arr[2]=='float'||arr[1])?'':'-')+(arr[4]=='l'?'l':'b');
+            let end=arr[2]=='int'?'':'f';
+            let num=arr[3];
+            res+=pre+num+end+"=>"+k+","
+        }
+        else{
+            alert("json value不合法");
+            return {state:0,msg:"json value不合法"};
+        }
+    }
+    return {state:1,msg:res.substr(0,res.length-1)}
+
+
+}

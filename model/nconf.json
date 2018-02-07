@@ -1,0 +1,29 @@
+{
+    "name":"nconf",
+    "columns": [
+        {"key":"nconfid","title":"节点配置id","isId":true,"editable":false},
+        {"key":"file","title":"文件路径"},
+        {"key":"remark","title":"备注","required":false}
+        
+    ],
+    "url":{
+        "baseUrl":"http://localhost:8080/hw/nconf",
+        "id":"nconfid",
+        "get":{
+            "method":"get",
+            "path":"/"
+        },
+        "add":{
+            "method":"post",
+            "path":"/"
+        },
+        "delete":{
+            "method":"delete",
+            "path":"/"
+        },
+        "update":{
+            "method":"put",
+            "path":"/" 
+        }
+    }
+}
