@@ -25,6 +25,7 @@ class App extends React.Component {
        delete s[k]
     }
     this.props.form.resetFields();
+    // console.log(s)
     this.props.form.setFieldsValue(s);
     // this.props.form.setFieldsValue({"gconfid":"1"});
   }

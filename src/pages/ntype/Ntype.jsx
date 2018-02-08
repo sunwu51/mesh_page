@@ -10,7 +10,7 @@ import { ntypeThunk } from './reducer'
 class ListDemo extends Component {
   constructor(props){
     super(props)
-    const columns=[{"key":"ntypeid","title":"节点id","isId":true,"editable":false},{"key":"typename","title":"类型名"},{"key":"datamodel","title":"数据模型(json)",'textarea':true},{"key":"modelstr","title":"nodered代码","editable":false},{"key":"remark","title":"备注","required":false}];
+    const columns=[{"key":"ntypeid","title":"节点id","isId":true,"editable":false},{"key":"typename","title":"类型名"},{"key":"datamodel","title":"数据模型(json)",'textarea':true},{"key":"modelstr","title":"nodered代码","editable":false},{"key":"flowid",editable:false},{"key":"remark","title":"备注","required":false}];
     this.state={columns}
   }
   componentDidMount(){

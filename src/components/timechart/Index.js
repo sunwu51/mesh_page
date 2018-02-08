@@ -24,6 +24,8 @@ export default class TimeCharts extends React.Component{
                 data: this.props.s[it]
             }
         })
+        console.log('yax',yAxis);
+        console.log('s',series);
         let option = {
             title: {
                 text: '节点实时数据'
@@ -37,11 +39,14 @@ export default class TimeCharts extends React.Component{
             yAxis,
             series
         };
-        return <ReactEcharts
-                option={option}
-                style={{height: '300px', width: '100%'}}
-                className={'react_for_echarts'}
-        />
+        if(yAxis.length==0)
+                return (<h1>Loading.....</h1>);
+        else
+                return <ReactEcharts
+                        option={option}
+                        style={{height: '300px', width: '100%'}}
+                        className={'react_for_echarts'}
+                />
     }
 
 }

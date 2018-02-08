@@ -12,7 +12,13 @@ export function request(config){
         }else if(res.status===403){
             console.log("权限不足");
         }
-        return res;
+        if(res.status=200)
+            return res;
+        else{
+            alert('request fail')
+        }
+    }).catch(err=>{
+        alert(err);
     });
 }
 export function getSelection(url){
