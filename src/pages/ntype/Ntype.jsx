@@ -14,6 +14,8 @@ class ListDemo extends Component {
     this.state={columns}
   }
   componentDidMount(){
+    console.log(this.props.match)
+    console.log(this.context)
     this.props.dispatch(ntypeThunk.get());
   }
   handleAdd(record){

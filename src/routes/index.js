@@ -21,7 +21,8 @@ export default class CRouter extends Component {
         return (
             <Switch>
                 <Route exact path="/app/dashboard/index" component={Dashboard} />
-	            {
+                <Route  path="/app/chart" key="/app/chart" component={require('../pages/chart/Chart').default} />
+                {
                     /* 自动扫描pages/{name}/index文件，并添加作为组件 */
                     menus.map(it=>{
                         if(it.name){
