@@ -44,7 +44,7 @@ class App extends Component {
                         <Routes auth={auth} />
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
-                    React-Admin ©2017 Created by 865470087@qq.com
+                    Mesh-Admin createBy Frank David[sunwu51@126.com]
                     </Footer>
                 </Layout>
                 

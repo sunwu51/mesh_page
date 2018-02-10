@@ -5,6 +5,7 @@ import List from '../../components/list/Index'
 import BreadcrumbCustom from '../../components/BreadcrumbCustom';
 import { nodeThunk } from './reducer'
 import { getSelection } from '../../axios/request'
+import {Link} from 'react-router-dom'
 
 
 
@@ -18,14 +19,10 @@ class ListDemo extends Component {
     "selection":{"url":"http://localhost:8080/hw/gateway","value":"gid"}
     },{"key":"seq","title":"序列号","editable":false},
     {"key":"online","title":"在线状态","type":"number","editable":false,"render":(text,record)=>{
-      let color=text=='0'?'red':'green';
-      return (
-        <b style={{color}}>
-        {
-          text=='0'?"离线":"在线"
-        }
-        </b>
-      )
+      let content=<b style={{color:"green"}}>在线<Link to={"/app/chart/"+record.seq}>[查看图表]</Link></b>
+      if(text=='0')
+        content=<b style={{color:"red"}}>离线</b>
+      return content;
     }},
     {"key":"ntypeid","title":"节点类型","type":"number",
     "selection":{"url":"http://localhost:8080/hw/ntype","value":"ntypeid"}},

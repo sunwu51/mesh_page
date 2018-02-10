@@ -10,7 +10,7 @@ import { nconfThunk } from './reducer'
 class ListDemo extends Component {
   constructor(props){
     super(props)
-    const columns=[{"key":"nconfid","title":"节点配置id","isId":true,"editable":false},{"key":"file","title":"文件路径"},{"key":"remark","title":"备注","required":false}];
+    const columns=[{"key":"nconfid","title":"节点配置id","isId":true,"editable":false},{"key":"file","title":"文件路径","file":{"upload":"//localhost:8080/hw/upload"}},{"key":"remark","title":"备注","required":false}];
     this.state={columns}
   }
   componentDidMount(){

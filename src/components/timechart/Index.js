@@ -40,7 +40,7 @@ export default class TimeCharts extends React.Component{
             series
         };
         if(yAxis.length==0)
-                return (<h1>Loading.....</h1>);
+                return (<h1>当前没有数据</h1>);
         else
                 return <ReactEcharts
                         option={option}

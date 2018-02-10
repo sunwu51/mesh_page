@@ -3,12 +3,7 @@ import { Upload, message, Button, Icon } from 'antd';
 
 export default class MyUpload extends React.Component {
     state = {
-      fileList: [{
-        uid: -1,
-        name: 'xxx.png',
-        status: 'done',
-        url: 'http://www.baidu.com/xxx.png',
-      }],
+      fileList: [],
     }
     handleChange = (info) => {
         let _this=this;
